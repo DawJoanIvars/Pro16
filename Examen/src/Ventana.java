@@ -105,7 +105,7 @@ public class Ventana extends JFrame {
 				//Si hay un caracter saltará el error.
 				catch (NumberFormatException error ){
 					//Añadimos el mensaje que mostrará si hay error.
-					textEstado.setText("THAS EQUIVOCAO");
+					textEstado.setText("Error");
 				}
 			}
 		});
@@ -138,7 +138,7 @@ public class Ventana extends JFrame {
 				}
 				//Añadimos el mensaje que mostrará si hay error.
 				catch (NumberFormatException error2 ){
-					textEstado.setText("THAS EQUIVOCAO");
+					textEstado.setText("Error");
 				}
 				
 			}
