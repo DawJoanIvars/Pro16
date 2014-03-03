@@ -25,12 +25,15 @@ public class VentanaEquipo extends JFrame {
 	private JTextField textGanados;
 	private JTextField textPerdidos;
 	private JTextField textEquipo;
-	private Equipo equipoModificar=new Equipo("",0, 0, 0, 0);
+	
+	private Equipo equipoModificar;
 
 	/**
 	 * Create the frame.
 	 */
-	public VentanaEquipo() {
+	public VentanaEquipo(Equipo mePasanEquipo) {
+		equipoModificar=mePasanEquipo;
+		
 		setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
 		setBounds(100, 100, 261, 319);
 		contentPane = new JPanel();
@@ -86,12 +89,13 @@ public class VentanaEquipo extends JFrame {
 		JButton guardarDatos = new JButton("Guardar Datos");
 		guardarDatos.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent e) {
-				
+				//EMpezamos a decirle que coja y meta los que escrivimos.			
 				equipoModificar.setNombre(textEquipo.getText());
 				equipoModificar.setgolesFavor(Integer.parseInt(textFavor.getText()));
 				equipoModificar.setgolesContra(Integer.parseInt(textContra.getText()));
 				equipoModificar.setPartidosGanados(Integer.parseInt(textGanados.getText()));
 				equipoModificar.setPartidosPerdidos(Integer.parseInt(textPerdidos.getText()));
+				//Aqui hacemos que salte al metodo de guardar en un fichero.
 				guardarEquipo();
 			}
 		});
@@ -99,17 +103,19 @@ public class VentanaEquipo extends JFrame {
 		contentPane.add(guardarDatos);
 	
 	}
-	
+	//Configuramos el método para guardar en un fichero lo escrito.
 	private void guardarEquipo(){
-		//
+		//Utilizamos el tipo ObjectOutputStream para poder guardar lo cojido anteriormente.
 		ObjectOutputStream salida;
 		try
 		{
+			//Le decimos que cree un archivo llamado archivo de extension .ser.
 			salida= new ObjectOutputStream(new FileOutputStream("archivo.ser"));
 			salida.writeObject(equipoModificar);
+			//
 			if (salida !=null)
 				salida.close();
-		}
+		}//Le decimos que si hay error salga un comentario.
 		catch(IOException ioException){
 			System.err.println("Error al abrir el archivo.");
 		}
