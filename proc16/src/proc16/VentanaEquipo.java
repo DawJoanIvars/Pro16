@@ -88,7 +88,7 @@ public class VentanaEquipo extends JFrame {
 		textPerdidos.setBounds(131, 176, 53, 20);
 		contentPane.add(textPerdidos);
 		textPerdidos.setColumns(10);
-		
+		//Boton Guardar datos
 		JButton guardarDatos = new JButton("Guardar Datos");
 		guardarDatos.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent e) {
@@ -104,13 +104,13 @@ public class VentanaEquipo extends JFrame {
 		});
 		guardarDatos.setBounds(10, 247, 117, 23);
 		contentPane.add(guardarDatos);
-		
+		//Boton Leer Datos
 		LeerDatos = new JButton("Leer Datos");
 		LeerDatos.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent arg0) {
 				//Aqui hacemos que salte al metodo de recuperar datos del fichero.
 				recuperarEquipo();
-				//Empezamos a decirle que deje los datos que escrivimos.
+				//Empezamos a decirle que deje los datos que escrivimos anteriormente.
 				textEquipo.setText(equipoModificar.getNombre());
 				textFavor.setText(String.valueOf((equipoModificar.getgolesFavor())));
 				textContra.setText(String.valueOf((equipoModificar.getgolesContra())));
