@@ -1,4 +1,4 @@
-package proc16;
+
 
 import java.io.Serializable;
 
@@ -9,6 +9,7 @@ public class Equipo implements Serializable{
 	private int golesContra;
 	private int partidosGanados;
 	private int partidosPerdidos;
+	private String jugadores[];
 	
 	//Esto es para que equipo tenga los atributos.
 	public Equipo(String nom,int golesF, int golesC, int paritdosG, int partidosP) {
@@ -19,7 +20,25 @@ public class Equipo implements Serializable{
 		golesContra=golesC;
 		partidosGanados=paritdosG;
 		partidosPerdidos=partidosP;
+		jugadores= new String [10];
+		for (int i=0;i<10;i++){
+			jugadores[i]="";
+		
+		jugadores[0]="Pepe";
+		jugadores[1]="pro";
+		}
 	}
+	
+	public void modificarJugador(int posicionJugador, String nombreNuevo){
+			
+		jugadores[posicionJugador]=nombreNuevo;
+	}
+	
+	public String devolberJugador(int posicionJugador){
+		return jugadores[posicionJugador];	
+		
+	}
+	
 	public Equipo()
 	{
 		nombreEquipo="";
@@ -28,6 +47,7 @@ public class Equipo implements Serializable{
 		partidosGanados=0;
 		partidosPerdidos=0;		
 	}
+	
 	
 	public void setNombre(String nombre){
 		nombreEquipo=nombre;
