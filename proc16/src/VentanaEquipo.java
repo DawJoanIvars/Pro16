@@ -34,8 +34,6 @@ public class VentanaEquipo extends JFrame {
 	
 	private Equipo equipoModificar;
 	private JButton LeerDatos;
-	private JTextField textposicionJugador;
-	private JTextField textNombreJugador;
 	private Equipo jugador;
 
 	/**
@@ -46,7 +44,7 @@ public class VentanaEquipo extends JFrame {
 		equipoModificar=mePasanEquipo;
 		
 		setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
-		setBounds(100, 100, 407, 427);
+		setBounds(100, 100, 232, 240);
 		contentPane = new JPanel();
 		contentPane.setBorder(new EmptyBorder(5, 5, 5, 5));
 		setContentPane(contentPane);
@@ -88,7 +86,7 @@ public class VentanaEquipo extends JFrame {
 		LeerDatos.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent arg0) {
 				//Aqui hacemos que salte al metodo de recuperar datos del fichero.
-				recuperarEquipo();
+				
 				//Empezamos a decirle que deje los datos que escrivimos anteriormente.
 				textEquipo.setText(equipoModificar.getNombre());
 				textFavor.setText(String.valueOf((equipoModificar.getgolesFavor())));
@@ -117,9 +115,7 @@ public class VentanaEquipo extends JFrame {
 				equipoModificar.setgolesFavor(Integer.parseInt(textFavor.getText()));
 				equipoModificar.setgolesContra(Integer.parseInt(textContra.getText()));
 				equipoModificar.setPartidosGanados(Integer.parseInt(textGanados.getText()));
-				equipoModificar.setPartidosPerdidos(Integer.parseInt(textPerdidos.getText()));
-				//Aqui hacemos que salte al metodo de guardar en un fichero.
-				guardarEquipo();
+				equipoModificar.setPartidosPerdidos(Integer.parseInt(textPerdidos.getText()));	
 			}
 		});
 		
@@ -129,87 +125,6 @@ public class VentanaEquipo extends JFrame {
 		textPerdidos.setColumns(10);
 		contentPane.add(guardarDatos);
 		contentPane.add(LeerDatos);
-		
-		textposicionJugador = new JTextField();
-		textposicionJugador.setBounds(174, 207, 47, 20);
-		contentPane.add(textposicionJugador);
-		textposicionJugador.setColumns(10);
-		
-		JLabel lblPosicionDelJugador = new JLabel("Posicion del Jugador");
-		lblPosicionDelJugador.setBounds(230, 210, 120, 14);
-		contentPane.add(lblPosicionDelJugador);
-		
-		JLabel lblNombreDelJugador = new JLabel("Nombre del Jugador");
-		lblNombreDelJugador.setBounds(174, 238, 125, 14);
-		contentPane.add(lblNombreDelJugador);
-		
-		textNombreJugador = new JTextField();
-		textNombreJugador.setBounds(174, 265, 86, 20);
-		contentPane.add(textNombreJugador);
-		textNombreJugador.setColumns(10);
-		
-		JButton btnMostrarJugador = new JButton("Mostrar Jugador");
-		btnMostrarJugador.addActionListener(new ActionListener() {
-			public void actionPerformed(ActionEvent e) {
-				try{
-				jugador.devolberJugador(Integer.parseInt(textposicionJugador.getText()));
-				//Esto esta mal en jugador.debolverJugador(0)
-				textposicionJugador.setText(String.valueOf((jugador.devolberJugador(Integer.parseInt(textposicionJugador.getText())))));
-				
-				}
-				catch(NumberFormatException error ){
-					System.err.println("Error al mostrar el Jugador.");
-				}
-			}
-		});
-		btnMostrarJugador.setBounds(5, 206, 148, 21);
-		contentPane.add(btnMostrarJugador);
-		
-		JButton btnNewButton = new JButton("Modificar Jugador");
-		btnNewButton.addActionListener(new ActionListener() {
-			public void actionPerformed(ActionEvent e) {
-				
-			}
-		});
-		btnNewButton.setBounds(5, 234, 148, 20);
-		contentPane.add(btnNewButton);
 	
-	}
-	//Configuramos el método para guardar en un fichero lo escrito.
-	private void guardarEquipo(){
-		//Utilizamos el tipo ObjectOutputStream para poder guardar lo cojido anteriormente.
-		ObjectOutputStream salida;
-		try
-		{
-			//Le decimos que cree un archivo llamado archivo de extension .ser.
-			salida= new ObjectOutputStream(new FileOutputStream("archivo.ser"));
-			salida.writeObject(equipoModificar);
-			//
-			if (salida !=null)	
-				salida.close();
-		}//Le decimos que si hay error salga un comentario.
-		catch(IOException ioException){
-			System.err.println("Error al abrir el archivo.");
-		}
-	}
-		//Configuramos el método para guardar en un fichero lo escrito.
-		private void recuperarEquipo(){
-			//Utilizamos el tipo ObjectOutputStream para poder guardar lo cojido anteriormente.
-			ObjectInputStream entrada;
-			try
-			{
-				//Le decimos que cree un archivo llamado archivo de extension .ser.
-				entrada= new ObjectInputStream(new FileInputStream("archivo.ser"));
-				equipoModificar=(Equipo)entrada.readObject();
-				//
-				if (entrada !=null)
-					entrada.close();
-			}//Le decimos que si hay error salga un comentario.
-			catch(IOException ioException){
-				System.err.println("Error al abrir el archivo.");
-			}
-			catch( ClassNotFoundException ClException){
-				System.err.println("Error al abrir el archivo.");
-			}
 	}
 }
