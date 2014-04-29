@@ -3,6 +3,7 @@
 import java.awt.BorderLayout;
 import java.awt.EventQueue;
 
+import javax.swing.JComboBox;
 import javax.swing.JFrame;
 import javax.swing.JPanel;
 import javax.swing.border.EmptyBorder;
@@ -35,13 +36,14 @@ public class VentanaEquipo extends JFrame {
 	private Equipo equipoModificar;
 	private JButton LeerDatos;
 	private Equipo jugador;
-
+	private JComboBox comboModificar;
 	/**
 	 * Create the frame.
 	 */
-	public VentanaEquipo(Equipo mePasanEquipo) {
+	public VentanaEquipo(Equipo mePasanEquipo,JComboBox mePasanCombo) {
 		setTitle("Ventana Equipo");
 		equipoModificar=mePasanEquipo;
+		comboModificar=mePasanCombo;
 		
 		setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
 		setBounds(100, 100, 232, 240);
@@ -111,11 +113,12 @@ public class VentanaEquipo extends JFrame {
 		guardarDatos.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent e) {
 				//Empezamos a decirle que coja y meta los que escrivimos.			
-				equipoModificar.setNombre(textEquipo.getText());
-				equipoModificar.setgolesFavor(Integer.parseInt(textFavor.getText()));
-				equipoModificar.setgolesContra(Integer.parseInt(textContra.getText()));
-				equipoModificar.setPartidosGanados(Integer.parseInt(textGanados.getText()));
-				equipoModificar.setPartidosPerdidos(Integer.parseInt(textPerdidos.getText()));	
+				//equipoModificar.setNombre(textEquipo.getText());
+				//equipoModificar.setgolesFavor(Integer.parseInt(textFavor.getText()));
+				//equipoModificar.setgolesContra(Integer.parseInt(textContra.getText()));
+				//equipoModificar.setPartidosGanados(Integer.parseInt(textGanados.getText()));
+				//equipoModificar.setPartidosPerdidos(Integer.parseInt(textPerdidos.getText()));	
+				comboModificar.addItem(new Equipo("Valencia",0,0,0,0));
 			}
 		});
 		

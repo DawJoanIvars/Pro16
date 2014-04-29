@@ -13,14 +13,17 @@ import javax.swing.JButton;
 import java.awt.event.ActionListener;
 import java.awt.event.ActionEvent;
 
+import javax.swing.JComboBox;
+
 public class VentanaLiga extends JFrame {
 
 	private JPanel contentPane;
 	private JTextField textNomreLiga;
 	private JTextField textNumeroEquipos;
-	private JTextField textEquipomodificar;
 	private Liga liga;
 	private Equipo equipo;
+	
+	JComboBox<Equipo> comboBox = new JComboBox<Equipo>();
 
 	
 
@@ -45,7 +48,7 @@ public class VentanaLiga extends JFrame {
 		lblnumeroEquipos.setBounds(174, 45, 99, 14);
 		contentPane.add(lblnumeroEquipos);
 		
-		JLabel lblEqu = new JLabel("Equipo a modificar");
+		JLabel lblEqu = new JLabel("Equipo");
 		lblEqu.setBounds(41, 141, 99, 14);
 		contentPane.add(lblEqu);
 		
@@ -60,23 +63,26 @@ public class VentanaLiga extends JFrame {
 		contentPane.add(textNumeroEquipos);
 		textNumeroEquipos.setColumns(10);
 		
-		textEquipomodificar = new JTextField();
-		textEquipomodificar.setBounds(41, 166, 86, 20);
-		contentPane.add(textEquipomodificar);
-		textEquipomodificar.setColumns(10);
-		
-		JButton btnModificar = new JButton("Modificar");
-		btnModificar.addActionListener(new ActionListener() {
-			public void actionPerformed(ActionEvent arg0) {
-				//Creamos una manera de pasar equipo
-				Equipo equipo=new Equipo("vnc",0, 0, 0, 0);
-				//Aqui para abrir la ventana y que no cierre todo
-				VentanaEquipo frame = new VentanaEquipo(equipo);
-				frame.setVisible(true);
-				frame.setDefaultCloseOperation(JFrame.DISPOSE_ON_CLOSE);
+		contentPane.add(comboBox);
+		comboBox.addActionListener(new ActionListener() {
+			public void actionPerformed(ActionEvent e) {
+				
+
 			}
 		});
-		btnModificar.setBounds(106, 241, 89, 23);
-		contentPane.add(btnModificar);
+		comboBox.setBounds(41, 166, 145, 20);
+		contentPane.add(comboBox);
+		
+		JButton btnAñadir = new JButton("A\u00F1adir");
+		btnAñadir.addActionListener(new ActionListener() {
+			public void actionPerformed(ActionEvent arg0) {
+				//Añadir equipos
+				//comboBox.addItem(new Equipo("Valencia",0,0,0,0));
+				VentanaEquipo frame = new VentanaEquipo(new Equipo(),comboBox);
+				frame.setVisible(true);
+			}
+		});
+		btnAñadir.setBounds(94, 223, 86, 23);
+		contentPane.add(btnAñadir);
 	}
 }

@@ -21,7 +21,7 @@ public class Equipo implements Serializable{
 		partidosGanados=paritdosG;
 		partidosPerdidos=partidosP;
 		jugadores= new String [10];
-		for (int i=0;i<10;i++){
+		for (int i=0;i<jugadores.length;i++){
 			jugadores[i]="";
 		
 		jugadores[0]="Pepe";
@@ -82,6 +82,9 @@ public class Equipo implements Serializable{
 	}
 	public int getPartidosPerdidos(){
 		return partidosPerdidos;
+	}
+	public String toString(){
+		return nombreEquipo;
 	}
 }
 	
