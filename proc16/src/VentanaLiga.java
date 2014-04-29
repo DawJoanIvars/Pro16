@@ -1,5 +1,3 @@
-
-
 import java.awt.BorderLayout;
 import java.awt.EventQueue;
 
@@ -73,16 +71,28 @@ public class VentanaLiga extends JFrame {
 		comboBox.setBounds(41, 166, 145, 20);
 		contentPane.add(comboBox);
 		
-		JButton btnAñadir = new JButton("A\u00F1adir");
+		JButton btnAñadir = new JButton("Añadir");
 		btnAñadir.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent arg0) {
 				//Añadir equipos
 				//comboBox.addItem(new Equipo("Valencia",0,0,0,0));
-				VentanaEquipo frame = new VentanaEquipo(new Equipo(),comboBox);
+				VentanaEquipo frame = new VentanaEquipo(new Equipo(),comboBox, liga);
 				frame.setVisible(true);
+				frame.setDefaultCloseOperation(JFrame.DISPOSE_ON_CLOSE);
 			}
 		});
-		btnAñadir.setBounds(94, 223, 86, 23);
+		btnAñadir.setBounds(21, 225, 86, 23);
 		contentPane.add(btnAñadir);
+		
+		JButton Modificar = new JButton("Modificar");
+		Modificar.addActionListener(new ActionListener() {
+			public void actionPerformed(ActionEvent arg0) {
+				VentanaEquipo frame = new VentanaEquipo((Equipo)comboBox.getSelectedItem(),comboBox, liga);
+				frame.setVisible(true);
+				frame.setDefaultCloseOperation(JFrame.DISPOSE_ON_CLOSE);
+			}
+		});
+		Modificar.setBounds(123, 225, 89, 23);
+		contentPane.add(Modificar);
 	}
 }

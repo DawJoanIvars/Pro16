@@ -1,6 +1,3 @@
-
-
-
 import java.io.Serializable;
 import java.util.ArrayList;
 
@@ -32,13 +29,14 @@ public class Liga implements Serializable {
         return numEquipos;
 
 	}
+	
 	public Equipo getEquipo(int posicion) {
         return equipos.get(posicion);
 
 	}
-	  public void newEquipo()
+	  public void newEquipo(Equipo nuevo)
 	    {
-	        equipos.add(new Equipo());
+	        equipos.add(nuevo);
 	        numEquipos++;
 	    }
 	  public void deleteEquipo(int posicion)
